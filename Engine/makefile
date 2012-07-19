@@ -1,21 +1,16 @@
 #==============================================================================
 #D A make file to make an executable project
 #D Directory structure:
-# +--Eng
-# +--+--Eng
+# +--Engine
+# +--+--Engine
 # +--+--+-- header files
-# +--+--EngR (resources)
-# +--+--+-- idl file
 # +--+--Source
 # +--+--+--application
 # +--+--+--+-- application file (with int main() in)
 # +--+--+--src
 # +--+--+--+-- normal source files
 # +--+--exe
-# +--+--+--Debug
-# +--+--+--+-- executable and symbol file
-# +--+--+--Release
-# +--+--+--+-- executable file
+# +--+--+-- executable file
 # +--+--lib
 # +--+--+-- library file
 # +--+--obj
@@ -27,7 +22,7 @@ EXE = Connect_4
 LIB = Engine
 # OBJECTS must be in dependency order right depending on left, and preceded by
 # obj/ eg obj/utility.o obj/file.o
-OBJECTS = obj/
+OBJECTS = obj/Engine.o
 
 #------------------------------------------------------------------------------
 # Generic options 
@@ -47,9 +42,6 @@ CC = g++
 exe/$(EXE).exe: Source/application/$(EXE).cpp lib/$(LIB).lib
 	$(CC) $(CFLAGS_D) Source/application/$(EXE).cpp -Llib/$(LIB).lib \
         -o exe/$(EXE).exe
-	@objcopy --only-keep-debug exe/$(EXE).exe exe/$(EXE).dbg
-	@strip --strip-debug --strip-unneeded exe/$(EXE).exe
-	@objcopy --add-gnu-debuglink=exe/$(EXE).dbg exe/$(EXE).exe
 	@echo ""
 
 #==============================================================================
@@ -57,13 +49,14 @@ exe/$(EXE).exe: Source/application/$(EXE).cpp lib/$(LIB).lib
 #------------------------------------------------------------------------------
 lib/$(LIB).lib: $(OBJECTS)
 	@echo ""
-	ar ruvs lib/$(LIB).lib $(OBJECTS)
+	ar ruvs $(LIB).lib $(OBJECTS)
+	@mv $(LIB).lib lib
 	@echo ""
 
 #==============================================================================
 #D Make all the object files and move them to the obj directory
 #------------------------------------------------------------------------------
-obj/%.o : Source/*/%.C $(LIB)/%.h
+obj/%.o : Source/*/%.cpp $(LIB)/%.h
 	$(CC) $(CFLAGS_D) -c $<
 	@mv *.o obj
 

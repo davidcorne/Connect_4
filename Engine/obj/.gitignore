@@ -1,0 +1,6 @@
+# Ignore everything in this directory. This is so that this directory appears 
+# in the git repository, as it is needed by the makefile.
+*
+# Except this file
+!.gitignore
+
