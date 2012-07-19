@@ -1,11 +1,11 @@
 //=============================================================================
-// Engine.h
+// engEngine.h
 //
 //  The game engine for connect 4.
 //
 
-#ifndef Engine_H
-#define Engine_H
+#ifndef engEngine_H
+#define engEngine_H
 
 #include <vector>
 
@@ -19,13 +19,13 @@ using std::vector;
 // local forward function declarations
 
 //=============================================================================
-class Engine {
+class engEngine {
 public:
 
-  Engine(int rows, int columns);
+  engEngine(int rows, int columns);
   // Default constructor.
 
-  ~Engine();
+  ~engEngine();
   // Destructor.
 
   void print();
@@ -50,19 +50,19 @@ public:
 private:
 
   // friends
-  friend class utest_Engine;
+  friend class utest_engEngine;
   // functions
 
   bool full(int column);
   // returns if the column is full
   
-  Engine();
+  engEngine();
   // Prohibited default constructor
   
-  Engine(const Engine&);
+  engEngine(const engEngine&);
   // Prohibited copy constructor
 
-  void operator=(const Engine&);
+  void operator=(const engEngine&);
   // Prohibited assignment operator
 
   // variables

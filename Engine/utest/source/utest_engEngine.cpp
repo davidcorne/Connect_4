@@ -1,7 +1,7 @@
 //=============================================================================
 //D unit test for the connect 4 game engine
 
-#include "Engine/Engine.h"
+#include "Engine/engEngine.h"
 
 #include "Assert.h" // use asserts
 #include "UTest.h"
@@ -18,7 +18,7 @@ using std::string;
 // local forward function declarations
 
 //=============================================================================
-class utest_Engine {
+class utest_engEngine {
 public:
 
   void run_tests();
@@ -49,13 +49,13 @@ private:
 };
 
 //=============================================================================
-void utest_Engine::horizontal_win()
+void utest_engEngine::horizontal_win()
 //
 //D tests a win along the bottom row
 //
 {
   print_test_title("Horizontal Win");
-  Engine game(6,7);
+  engEngine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
   game.place(1,0);
@@ -66,13 +66,13 @@ void utest_Engine::horizontal_win()
 }
 
 //=============================================================================
-void utest_Engine::vertical_win()
+void utest_engEngine::vertical_win()
 //
 //D tests a win along the right column
 //
 {
   print_test_title("Vertical Win");
-  Engine game(6,7);
+  engEngine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
   game.place(2,0);
@@ -83,13 +83,13 @@ void utest_Engine::vertical_win()
 }
 
 //=============================================================================
-void utest_Engine::diagonal_left_high_win()
+void utest_engEngine::diagonal_left_high_win()
 //
 //D tests a diagonal win with the left side high
 //
 {
   print_test_title("Diagonal Win, Left High");
-  Engine game(6,7);
+  engEngine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
   game.place(3,3);
@@ -106,13 +106,13 @@ void utest_Engine::diagonal_left_high_win()
 }
 
 //=============================================================================
-void utest_Engine::diagonal_right_high_win()
+void utest_engEngine::diagonal_right_high_win()
 //
 //D tests a diagonal win with the right side high
 //
 {
   print_test_title("Diagonal Win, Right High");
-  Engine game(6,7);
+  engEngine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
   game.place(4,0);
@@ -129,13 +129,13 @@ void utest_Engine::diagonal_right_high_win()
 }
 
 //=============================================================================
-void utest_Engine::draw()
+void utest_engEngine::draw()
 //
 //D tests a draw
 //
 {
   print_test_title("Draw");
-  Engine game(6,7);
+  engEngine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
   // testing for a draw, lots of coins to place
@@ -191,13 +191,13 @@ void utest_Engine::draw()
 }
 
 //=============================================================================
-void utest_Engine::win_number_changed()
+void utest_engEngine::win_number_changed()
 //
 //D tests horizontal wins when the win number isn't 5
 //
 {
   print_test_title("Win Number Changed");
-  Engine game(6,7);
+  engEngine game(6,7);
   game.set_win_number(3);
 
   game.place(1,0);
@@ -217,13 +217,13 @@ void utest_Engine::win_number_changed()
 }
 
 //=============================================================================
-void utest_Engine::full_column()
+void utest_engEngine::full_column()
 //
 //D tests the full column function
 //
 {
   print_test_title("Full Column");
-  Engine game(6,7);
+  engEngine game(6,7);
   
   utest(!game.full(0), "Test the column is not full with 1.");
   
@@ -253,7 +253,7 @@ void utest_Engine::full_column()
 }
 
 //=============================================================================
-void utest_Engine::run_tests()
+void utest_engEngine::run_tests()
 //
 //D runs the tests
 //
@@ -274,7 +274,7 @@ int main(int num_arguments, char* arguments[])
 //D The entry for the tests
 //
 {
-  utest_Engine tests;
+  utest_engEngine tests;
   tests.run_tests();
   return 0;
 }

@@ -22,7 +22,7 @@ EXE = Connect_4
 LIB = Engine
 # OBJECTS must be in dependency order right depending on left, and preceded by
 # obj/ eg obj/utility.o obj/file.o
-OBJECTS = obj/Engine.o
+OBJECTS = obj/engEngine.o
 
 #------------------------------------------------------------------------------
 # Generic options 

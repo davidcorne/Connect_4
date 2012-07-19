@@ -4,7 +4,7 @@
 // <Full description.>
 //
 
-#include "Engine/Engine.h"
+#include "Engine/engEngine.h"
 
 #include "assert.h" // use asserts
 #include <iostream>
@@ -20,7 +20,7 @@ using std::string;
 // local forward function declarations
 
 //=============================================================================
-Engine::Engine(int rows, int columns)
+engEngine::engEngine(int rows, int columns)
 //
 //D Default constructor
 //
@@ -32,7 +32,7 @@ Engine::Engine(int rows, int columns)
 }
 
 //=============================================================================
-Engine::~Engine()
+engEngine::~engEngine()
 //
 //D Destructor
 //
@@ -40,7 +40,7 @@ Engine::~Engine()
 }
 
 //=============================================================================
-void Engine::print()
+void engEngine::print()
 //
 //D prints the board to std output in ascii characters.
 //
@@ -67,7 +67,7 @@ void Engine::print()
 }
 
 //=============================================================================
-void Engine::place(int player, int column)
+void engEngine::place(int player, int column)
 //
 //D place the players token in that column.
 //D Precondition: column > m_columns
@@ -88,7 +88,7 @@ void Engine::place(int player, int column)
 }
 
 //=============================================================================
-int Engine::state()
+int engEngine::state()
 //
 //D returns the state of the board.
 //D   returns :
@@ -192,7 +192,7 @@ int Engine::state()
 }
 
 //=============================================================================
-void Engine::set_win_number(const int& win_number)
+void engEngine::set_win_number(const int& win_number)
 //
 //D sets the number of tokens in a row you need to win.
 //
@@ -201,7 +201,7 @@ void Engine::set_win_number(const int& win_number)
 }
 
 //=============================================================================
-bool Engine::full(int column)
+bool engEngine::full(int column)
 //
 //D returns if the column is full
 //

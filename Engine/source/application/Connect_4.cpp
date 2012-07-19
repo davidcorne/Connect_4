@@ -1,7 +1,7 @@
 //=============================================================================
 //D 
 
-#include "Engine/Engine.h"
+#include "Engine/engEngine.h"
 
 #include <fstream>
 #include <iostream>
@@ -58,7 +58,7 @@ int main(int num_arguments, char* arguments[])
       }
     }
   }
-  Engine game(6,7);
+  engEngine game(6,7);
   game.print();
   
   return 0;
