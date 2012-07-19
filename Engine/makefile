@@ -26,7 +26,7 @@ OBJECTS = obj/Engine.o
 
 #------------------------------------------------------------------------------
 # Generic options 
-CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS -I.
+CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS -I. -I..
 CFLAGS = -O2
 CC = g++
 
@@ -39,7 +39,7 @@ CC = g++
 #D try to get debugging info out for Visual Studio -- currently doesn't work
 #
 #------------------------------------------------------------------------------
-exe/$(EXE).exe: Source/application/$(EXE).cpp lib/$(LIB).lib
+exe/$(EXE).exe: Source/application/$(EXE).cpp lib/$(LIB).lib ../*.h
 	$(CC) $(CFLAGS_D) Source/application/$(EXE).cpp lib/$(LIB).lib \
         -o exe/$(EXE).exe
 	@echo ""
@@ -47,7 +47,7 @@ exe/$(EXE).exe: Source/application/$(EXE).cpp lib/$(LIB).lib
 #==============================================================================
 #D Build the objects into a library
 #------------------------------------------------------------------------------
-lib/$(LIB).lib: $(OBJECTS)
+lib/$(LIB).lib: $(OBJECTS) ../*.h
 	@echo ""
 	ar ruvs $(LIB).lib $(OBJECTS)
 	@mv $(LIB).lib lib
@@ -56,7 +56,7 @@ lib/$(LIB).lib: $(OBJECTS)
 #==============================================================================
 #D Make all the object files and move them to the obj directory
 #------------------------------------------------------------------------------
-obj/%.o : Source/*/%.cpp $(LIB)/%.h
+obj/%.o : Source/*/%.cpp $(LIB)/%.h ../*.h
 	$(CC) $(CFLAGS_D) -c $<
 	@mv *.o obj
 

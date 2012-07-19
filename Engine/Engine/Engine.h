@@ -31,9 +31,9 @@ public:
   void print();
   // prints the board to std output in ascii characters.
 
-  bool place(int player, int column);
+  void place(int player, int column);
   // place the players token in that column.
-  // Precondition: column < m_columns
+  // Precondition: column > m_columns
   // Precondition: !full(column)
 
   int state();
@@ -50,6 +50,7 @@ public:
 private:
 
   // friends
+  friend class utest_Engine;
   // functions
 
   bool full(int column);

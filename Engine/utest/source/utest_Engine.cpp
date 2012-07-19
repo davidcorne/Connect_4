@@ -3,7 +3,9 @@
 
 #include "Engine/Engine.h"
 
-#include <assert.h> // use asserts
+#include "Assert.h" // use asserts
+#include "UTest.h"
+
 #include <iostream>
 
 // types: classes, enums, typedefs, namespaces
@@ -11,23 +13,9 @@ using std::cout;
 using std::cerr;
 using std::endl;
 using std::string;
+
 // variables: consts, statics, exported variables (declared extern elsewhere)
 // local forward function declarations
-
-//=============================================================================
-void utest(const bool test_value, const string& message)
-//
-//D Test the value and return the message with PASSED or FAILED, assert on fail
-//
-{
-  if (!test_value) {
-    cerr << "FAILED: " << message << endl;
-    assert(test_value);
-  } else {
-    cout << "PASSED: " << message << endl;
-    cout << endl;
-  }
-}
 
 //=============================================================================
 class utest_Engine {
@@ -56,22 +44,9 @@ private:
   void win_number_changed();
   // tests horizontal wins when the win number isn't 5
 
+  void full_column();
+  // tests the full_column() function
 };
-
-//=============================================================================
-void utest_Engine::run_tests()
-//
-//D runs the tests
-//
-{
-  horizontal_win();
-  vertical_win();
-  diagonal_left_high_win();
-  diagonal_right_high_win();
-  draw();
-  win_number_changed();
-}
-
 
 //=============================================================================
 void utest_Engine::horizontal_win()
@@ -79,6 +54,7 @@ void utest_Engine::horizontal_win()
 //D tests a win along the bottom row
 //
 {
+  print_test_title("Horizontal Win");
   Engine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
@@ -95,6 +71,7 @@ void utest_Engine::vertical_win()
 //D tests a win along the right column
 //
 {
+  print_test_title("Vertical Win");
   Engine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
@@ -111,6 +88,7 @@ void utest_Engine::diagonal_left_high_win()
 //D tests a diagonal win with the left side high
 //
 {
+  print_test_title("Diagonal Win, Left High");
   Engine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
@@ -133,6 +111,7 @@ void utest_Engine::diagonal_right_high_win()
 //D tests a diagonal win with the right side high
 //
 {
+  print_test_title("Diagonal Win, Right High");
   Engine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
@@ -155,6 +134,7 @@ void utest_Engine::draw()
 //D tests a draw
 //
 {
+  print_test_title("Draw");
   Engine game(6,7);
   utest(game.state() == 0, "Test inital no win");
 
@@ -216,6 +196,7 @@ void utest_Engine::win_number_changed()
 //D tests horizontal wins when the win number isn't 5
 //
 {
+  print_test_title("Win Number Changed");
   Engine game(6,7);
   game.set_win_number(3);
 
@@ -233,6 +214,58 @@ void utest_Engine::win_number_changed()
   game.place(1,4);
   
   utest(game.state() == 1, "Test win number of 5");
+}
+
+//=============================================================================
+void utest_Engine::full_column()
+//
+//D tests the full column function
+//
+{
+  print_test_title("Full Column");
+  Engine game(6,7);
+  
+  utest(!game.full(0), "Test the column is not full with 1.");
+  
+  game.place(1,0);
+  
+  utest(!game.full(0), "Test the column is not full with 2.");
+  
+  game.place(1,0);
+  
+  utest(!game.full(0), "Test the column is not full with 3.");
+  
+  game.place(1,0);
+  
+  utest(!game.full(0), "Test the column is not full with 4.");
+  
+  game.place(1,0);
+  
+  utest(!game.full(0), "Test the column is not full with 5.");
+  
+  game.place(1,0);
+  
+  utest(!game.full(0), "Test the column is not full with 6.");
+  
+  game.place(1,0);
+
+  utest(game.full(0), "Test the column is full with 7.");
+}
+
+//=============================================================================
+void utest_Engine::run_tests()
+//
+//D runs the tests
+//
+{
+  print_test_title("Running All Tests");
+  full_column();
+  horizontal_win();
+  vertical_win();
+  diagonal_left_high_win();
+  diagonal_right_high_win();
+  draw();
+  win_number_changed();
 }
 
 //=============================================================================
