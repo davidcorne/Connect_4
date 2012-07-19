@@ -98,16 +98,39 @@ int Engine::state()
 //D              2 - Player 2 has won
 //
 {
+  // to check if the game is over
+  bool game_end = false;
+  
+  // check if there is a horizontal win
+  for (int i = 0; i < m_columns; ++i) {
+    for (int j = 0; j < m_rows; ++j) {
+      // continue if it will go outside of the bounds
+      if (i + m_win_number > m_columns) {
+        continue;
+      }
+      // if the token at the start of where we are checking is taken is filled
+      game_end = (m_board[i][j] != 0);
+      for (int k = 0; k < m_win_number - 1; ++k) {
+        // check the next tokens are equal
+        game_end = game_end && (m_board[i + k][j] == m_board[i + k + 1][j]);
+      }
+      if (game_end) {
+        return m_board[i][j];
+      }
+    }
+  }
+  
   // return so it compiles
   return 0;
 }
 
 //=============================================================================
-void Engine::set_win_number(int win_number)
+void Engine::set_win_number(const int& win_number)
 //
 //D sets the number of tokens in a row you need to win.
 //
 {
+  m_win_number = win_number;
 }
 
 //=============================================================================
@@ -116,6 +139,6 @@ bool Engine::full(int column)
 //D returns if the column is full
 //
 {
-  // return so it compiles
+  // return if the final token is empty or not
   return m_board[column][0] != 0;
 }

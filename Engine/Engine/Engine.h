@@ -44,7 +44,7 @@ public:
   //              1 - Player 1 has won
   //              2 - Player 2 has won
 
-  void set_win_number(int win_number);
+  void set_win_number(const int& win_number);
   // sets the number of tokens in a row you need to win.
   
 private:
