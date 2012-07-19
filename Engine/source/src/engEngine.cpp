@@ -6,7 +6,7 @@
 
 #include "Engine/engEngine.h"
 
-#include "assert.h" // use asserts
+#include "Assert.h" // use asserts
 #include <iostream>
 #include <string>
 

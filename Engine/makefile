@@ -4,7 +4,7 @@
 # +--Engine
 # +--+--Engine
 # +--+--+-- header files
-# +--+--Source
+# +--+--source
 # +--+--+--application
 # +--+--+--+-- application file (with int main() in)
 # +--+--+--src
@@ -39,8 +39,8 @@ CC = g++
 #D try to get debugging info out for Visual Studio -- currently doesn't work
 #
 #------------------------------------------------------------------------------
-exe/$(EXE).exe: Source/application/$(EXE).cpp lib/$(LIB).lib ../*.h
-	$(CC) $(CFLAGS_D) Source/application/$(EXE).cpp lib/$(LIB).lib \
+exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIB).lib ../*.h
+	$(CC) $(CFLAGS_D) source/application/$(EXE).cpp lib/$(LIB).lib \
         -o exe/$(EXE).exe
 	@echo ""
 
@@ -56,7 +56,7 @@ lib/$(LIB).lib: $(OBJECTS) ../*.h
 #==============================================================================
 #D Make all the object files and move them to the obj directory
 #------------------------------------------------------------------------------
-obj/%.o : Source/*/%.cpp $(LIB)/%.h ../*.h
+obj/%.o : source/*/%.cpp $(LIB)/%.h ../*.h
 	$(CC) $(CFLAGS_D) -c $<
 	@mv *.o obj
 
