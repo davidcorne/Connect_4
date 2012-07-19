@@ -40,7 +40,7 @@ CC = g++
 #
 #------------------------------------------------------------------------------
 exe/$(EXE).exe: Source/application/$(EXE).cpp lib/$(LIB).lib
-	$(CC) $(CFLAGS_D) Source/application/$(EXE).cpp -Llib/$(LIB).lib \
+	$(CC) $(CFLAGS_D) Source/application/$(EXE).cpp lib/$(LIB).lib \
         -o exe/$(EXE).exe
 	@echo ""
 
