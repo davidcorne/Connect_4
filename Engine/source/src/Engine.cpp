@@ -180,7 +180,15 @@ int Engine::state()
     }
   }
 
-  return 0;
+  // no winner, check if there's a draw.
+  for (int i = 0; i < m_columns; ++i) {
+    if (!full(i)) {
+      // if the column is not full it's a draw
+      return 0;
+    }
+  }
+  // if it's gotten here it's a draw
+  return -1;
 }
 
 //=============================================================================

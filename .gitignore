@@ -3,5 +3,6 @@
 *.lib
 *.exe
 debug.log
+#*#
 *~
 *.exe.stackdump
