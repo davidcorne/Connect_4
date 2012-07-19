@@ -160,7 +160,26 @@ int Engine::state()
     }
   }
 
-  // return so it compiles
+  // check if there is a diagonal win, right high
+  for (int i = 0; i < m_columns; ++i) {
+    for (int j = 0; j < m_rows; ++j) {
+      // continue if it will go outside of the bounds
+      if (i + m_win_number > m_columns || j - m_win_number < 0) {
+        continue;
+      }
+      // if the token at the start of where we are checking is taken is filled
+      game_end = (m_board[i][j] != 0);
+      for (int k = 0; k < m_win_number - 1; ++k) {
+        // check the next tokens are equal
+        game_end =
+          game_end && (m_board[i + k][j - k] == m_board[i + k + 1][j - k - 1]);
+      }
+      if (game_end) {
+        return m_board[i][j];
+      }
+    }
+  }
+
   return 0;
 }
 
