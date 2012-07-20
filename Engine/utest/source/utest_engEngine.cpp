@@ -3,8 +3,8 @@
 
 #include "Engine/engEngine.h"
 
-#include "Assert.h" // use asserts
-#include "UTest.h"
+#include "dgcUtils/Assert.h" // use asserts
+#include "dgcUtils/UTest.h"
 
 #include <iostream>
 

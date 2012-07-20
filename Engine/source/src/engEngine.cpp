@@ -6,7 +6,7 @@
 
 #include "Engine/engEngine.h"
 
-#include "Assert.h" // use dgc asserts
+#include "dgcUtils/Assert.h" // use dgc asserts
 #include <iostream>
 #include <string>
 
@@ -40,7 +40,7 @@ engEngine::~engEngine()
 }
 
 //=============================================================================
-void engEngine::print() const
+void engEngine::print() const
 //
 //D prints the board to std output in ascii characters.
 //
@@ -88,7 +88,7 @@ void engEngine::place(int player, int column)
 }
 
 //=============================================================================
-const int engEngine::state() const
+const int engEngine::state() const
 //
 //D returns the state of the board.
 //D   returns :
@@ -201,7 +201,7 @@ void engEngine::set_win_number(const int& win_number)
 }
 
 //=============================================================================
-bool engEngine::full(int column) const
+bool engEngine::full(int column) const
 //
 //D returns if the column is full
 //

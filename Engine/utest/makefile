@@ -3,13 +3,14 @@
 
 #------------------------------------------------------------------------------
 # Generic options 
-CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS -I.. -I../..
+INCLUDES = -I.. -I../../dgcUtils
+CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS $(INCLUDES)
 CC = g++
 #==============================================================================
 #D Build the unit test exe for engEngine
 #------------------------------------------------------------------------------
 
-exe/utest_engEngine.exe: source/utest_engEngine.cpp ../lib/* ../../*.h
+exe/utest_engEngine.exe: source/utest_engEngine.cpp ../lib/* 
 	$(CC) $(CFLAGS_D) source/utest_engEngine.cpp ../lib/Engine.lib \
         -o exe/utest_engEngine.exe 
 

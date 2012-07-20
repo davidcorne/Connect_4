@@ -23,10 +23,11 @@ LIB = Engine
 # OBJECTS must be in dependency order right depending on left, and preceded by
 # obj/ eg obj/utility.o obj/file.o
 OBJECTS = obj/engEngine.o
+INCLUDES = -I. -I../dgcUtils
 
 #------------------------------------------------------------------------------
 # Generic options 
-CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS -I. -I..
+CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS $(INCLUDES)
 CFLAGS = -O2
 CC = g++
 
@@ -39,7 +40,7 @@ CC = g++
 #D try to get debugging info out for Visual Studio -- currently doesn't work
 #
 #------------------------------------------------------------------------------
-exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIB).lib ../*.h
+exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIB).lib 
 	$(CC) $(CFLAGS_D) source/application/$(EXE).cpp lib/$(LIB).lib \
         -o exe/$(EXE).exe
 	@echo ""
@@ -47,7 +48,7 @@ exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIB).lib ../*.h
 #==============================================================================
 #D Build the objects into a library
 #------------------------------------------------------------------------------
-lib/$(LIB).lib: $(OBJECTS) ../*.h
+lib/$(LIB).lib: $(OBJECTS) 
 	@echo ""
 	ar ruvs $(LIB).lib $(OBJECTS)
 	@mv $(LIB).lib lib
@@ -56,7 +57,7 @@ lib/$(LIB).lib: $(OBJECTS) ../*.h
 #==============================================================================
 #D Make all the object files and move them to the obj directory
 #------------------------------------------------------------------------------
-obj/%.o : source/*/%.cpp $(LIB)/%.h ../*.h
+obj/%.o : source/*/%.cpp $(LIB)/%.h 
 	$(CC) $(CFLAGS_D) -c $<
 	@mv *.o obj
 
