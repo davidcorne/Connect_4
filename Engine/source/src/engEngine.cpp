@@ -28,7 +28,7 @@ engEngine::engEngine(int rows, int columns)
     m_columns(columns),
     m_win_number(4) // default to connect 4
 {
-  m_board.resize(m_columns, vector<int>(m_rows, 0 ));
+  m_board.resize(m_columns, vector<int>(m_rows, 0));
 }
 
 //=============================================================================
@@ -40,7 +40,7 @@ engEngine::~engEngine()
 }
 
 //=============================================================================
-void engEngine::print()
+void engEngine::print() const
 //
 //D prints the board to std output in ascii characters.
 //
@@ -88,7 +88,7 @@ void engEngine::place(int player, int column)
 }
 
 //=============================================================================
-int engEngine::state()
+const int engEngine::state() const
 //
 //D returns the state of the board.
 //D   returns :
@@ -201,11 +201,20 @@ void engEngine::set_win_number(const int& win_number)
 }
 
 //=============================================================================
-bool engEngine::full(int column)
+bool engEngine::full(int column) const
 //
 //D returns if the column is full
 //
 {
   // return if the final token is empty or not
   return m_board[column][0] != 0;
+}
+
+//=============================================================================
+const vector<vector<int> >& engEngine::board() const
+//
+//D returns the board.
+//
+{
+  return m_board;
 }

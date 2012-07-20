@@ -28,7 +28,7 @@ public:
   ~engEngine();
   // Destructor.
 
-  void print();
+  void print() const;
   // prints the board to std output in ascii characters.
 
   void place(int player, int column);
@@ -36,16 +36,22 @@ public:
   // Precondition: column > m_columns
   // Precondition: !full(column)
 
-  int state();
+  const int state() const;
   // returns the state of the board.
   //   returns :
   //             -1 - The game is a draw
-  //              0 - There is no winner
+  //              0 - There is no winner yet
   //              1 - Player 1 has won
   //              2 - Player 2 has won
 
   void set_win_number(const int& win_number);
   // sets the number of tokens in a row you need to win.
+
+  const vector<vector<int> >& board() const;
+  // returns the board.
+  
+  bool full(int column) const;
+  // returns if the column is full
   
 private:
 
@@ -53,9 +59,6 @@ private:
   friend class utest_engEngine;
   // functions
 
-  bool full(int column);
-  // returns if the column is full
-  
   engEngine();
   // Prohibited default constructor
   
