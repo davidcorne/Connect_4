@@ -62,6 +62,7 @@ void utest_engAI::takes_horizontal_win()
 //D tests a win along the bottom row
 //
 {
+  print_test_title("Takes Horizontal Win");
   engEngine game(6,7);
   game.place(1,0);
   game.place(1,1);
@@ -81,6 +82,7 @@ void utest_engAI::takes_vertical_win()
 //D tests a win along the right column
 //
 {
+  print_test_title("Takes Vertical Win");
   engEngine game(6,7);
   game.place(1,0);
   game.place(1,0);
@@ -100,6 +102,7 @@ void utest_engAI::takes_diagonal_left_high_win()
 //D tests a diagonal win with the left side high
 //
 {
+  print_test_title("Takes Diagonal Left High Win");
   engEngine game(6,7);
   game.place(1,3);
   game.place(2,2);
@@ -125,6 +128,7 @@ void utest_engAI::takes_diagonal_right_high_win()
 //D tests a diagonal win with the right side high
 //
 {
+  print_test_title("Takes Diagonal Right High Win");
   engEngine game(6,7);
   game.place(1,0);
   game.place(2,1);
@@ -150,6 +154,7 @@ void utest_engAI::stops_horizontal_win()
 //D tests a win along the bottom row
 //
 {
+  print_test_title("Stops Horizontal Win");
   engEngine game(6,7);
   game.place(1,0);
   game.place(1,1);
@@ -169,6 +174,7 @@ void utest_engAI::stops_vertical_win()
 //D tests a win along the right column
 //
 {
+  print_test_title("Stops Vertical Win");
   engEngine game(6,7);
   game.place(1,0);
   game.place(1,0);
@@ -188,6 +194,7 @@ void utest_engAI::stops_diagonal_left_high_win()
 //D tests a diagonal win with the left side high
 //
 {
+  print_test_title("Stops Diagonal Left High Win");
   engEngine game(6,7);
   game.place(1,3);
   game.place(2,2);
@@ -213,6 +220,7 @@ void utest_engAI::stops_diagonal_right_high_win()
 //D tests a diagonal win with the right side high
 //
 {
+  print_test_title("Stops Diagonal Right High Win");
   engEngine game(6,7);
   game.place(1,0);
   game.place(2,1);
@@ -238,6 +246,7 @@ void utest_engAI::wins_not_spoils()
 //D tests that the computer wins rather than stopping the player winning
 //
 {
+  print_test_title("Wins Rather Than Prevents");
   engEngine game(6,7);
   game.place(1,0);
   game.place(1,1);

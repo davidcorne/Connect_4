@@ -28,8 +28,8 @@ exe/%.exe: source/%.cpp $(LIBS)
 #D Run all the tests, needs to be added to manually
 #------------------------------------------------------------------------------
 run: END
-	./exe/utest_engEngine.exe
 	./exe/utest_engAI.exe
+	./exe/utest_engEngine.exe
 
 #==============================================================================
 #D For deleting all temporary and made files
