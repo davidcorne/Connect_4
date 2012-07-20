@@ -1,20 +1,34 @@
 #==============================================================================
 #D A make file to make the unit tests
+EXECUTABLES = exe/utest_engEngine.exe exe/utest_engAI.exe
+INCLUDES = -I.. -I../../dgcUtils
+LIBS = ../lib/Engine.lib
 
 #------------------------------------------------------------------------------
 # Generic options 
-INCLUDES = -I.. -I../../dgcUtils
 CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS $(INCLUDES)
 CC = g++
 
 #==============================================================================
-#D Build the unit test exe for engEngine
+#D Artificial target so it makes all the executables
 #------------------------------------------------------------------------------
+END: $(EXECUTABLES)
+	@echo "All tests made."
+	@echo ""
 
-exe/utest_engEngine.exe: source/utest_engEngine.cpp ../lib/* 
+#==============================================================================
+#D Make all the executables
+#------------------------------------------------------------------------------
+exe/%.exe: source/%.cpp $(LIBS)
 	@mkdir -p exe
-	$(CC) $(CFLAGS_D) source/utest_engEngine.cpp ../lib/Engine.lib \
-        -o exe/utest_engEngine.exe 
+	$(CC) $(CFLAGS_D) $< $(LIBS) -o $@
+
+#==============================================================================
+#D Run all the tests, needs to be added to manually
+#------------------------------------------------------------------------------
+run: END
+	./exe/utest_engEngine.exe
+	./exe/utest_engAI.exe
 
 #==============================================================================
 #D For deleting all temporary and made files

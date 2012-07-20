@@ -258,7 +258,7 @@ void utest_engEngine::run_tests()
 //D runs the tests
 //
 {
-  print_test_title("Running All Tests");
+  print_test_title("Running engEngine Tests");
   full_column();
   horizontal_win();
   vertical_win();

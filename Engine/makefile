@@ -22,7 +22,7 @@ EXE = Connect_4
 LIB = Engine
 # OBJECTS must be in dependency order right depending on left, and preceded by
 # obj/ eg obj/utility.o obj/file.o
-OBJECTS = obj/engEngine.o
+OBJECTS = obj/engEngine.o obj/engAI.o
 INCLUDES = -I. -I../dgcUtils
 
 #------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ obj/%.o : source/*/%.cpp $(LIB)/%.h
 #D For deleting all temporary and made files
 #------------------------------------------------------------------------------
 clean: FRC
-	@rm -f obj/* lib/* exe/*.* exe/*/* *.stackdump *~ \#*\#
+	@rm -f obj/* lib/* exe/* *.stackdump *~ \#*\#
 	@echo "Removed all: objects, libraries, executables, and temp files."
 
 #==============================================================================
