@@ -12,7 +12,7 @@
 // local forward function declarations
 
 //=============================================================================
-engAI::engAI(const int difficulty)
+engAI::engAI(const int player, const int difficulty)
 //
 //D Default constructor.
 //

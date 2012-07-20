@@ -22,6 +22,7 @@ END: $(EXECUTABLES)
 exe/%.exe: source/%.cpp $(LIBS)
 	@mkdir -p exe
 	$(CC) $(CFLAGS_D) $< $(LIBS) -o $@
+	@echo ""
 
 #==============================================================================
 #D Run all the tests, needs to be added to manually

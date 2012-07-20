@@ -2,6 +2,7 @@
 //D unit test for the connect 4 game engine
 
 #include "Engine/engAI.h"
+#include "Engine/engEngine.h"
 
 #include "dgcUtils/Assert.h" // use asserts
 #include "dgcUtils/UTest.h"
@@ -61,6 +62,17 @@ void utest_engAI::takes_horizontal_win()
 //D tests a win along the bottom row
 //
 {
+  engEngine game(6,7);
+  game.place(1,0);
+  game.place(1,1);
+  game.place(1,2);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(1, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 3,
+    "Test if the computer takes a horizontal win."
+  );
 }
 
 //=============================================================================
@@ -69,6 +81,17 @@ void utest_engAI::takes_vertical_win()
 //D tests a win along the right column
 //
 {
+  engEngine game(6,7);
+  game.place(1,0);
+  game.place(1,0);
+  game.place(1,0);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(1, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 0,
+    "Test if the computer takes a vertical win."
+  );
 }
 
 //=============================================================================
@@ -77,6 +100,23 @@ void utest_engAI::takes_diagonal_left_high_win()
 //D tests a diagonal win with the left side high
 //
 {
+  engEngine game(6,7);
+  game.place(1,3);
+  game.place(2,2);
+  game.place(1,2);
+  game.place(2,1);
+  game.place(2,1);
+  game.place(1,1);
+  game.place(1,0);
+  game.place(2,0);
+  game.place(2,0);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(1, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 0,
+    "Test if the computer takes a left high diagonal win."
+  );
 }
 
 //=============================================================================
@@ -85,6 +125,23 @@ void utest_engAI::takes_diagonal_right_high_win()
 //D tests a diagonal win with the right side high
 //
 {
+  engEngine game(6,7);
+  game.place(1,0);
+  game.place(2,1);
+  game.place(1,1);
+  game.place(2,2);
+  game.place(2,2);
+  game.place(1,2);
+  game.place(2,3);
+  game.place(2,3);
+  game.place(2,3);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(1, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 3,
+    "Test if the computer takes a right high diagonal win."
+  );
 }
 
 //=============================================================================
@@ -93,6 +150,17 @@ void utest_engAI::stops_horizontal_win()
 //D tests a win along the bottom row
 //
 {
+  engEngine game(6,7);
+  game.place(1,0);
+  game.place(1,1);
+  game.place(1,2);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(0, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 3,
+    "Test if the computer stops a horizontal win."
+  );
 }
 
 //=============================================================================
@@ -101,6 +169,17 @@ void utest_engAI::stops_vertical_win()
 //D tests a win along the right column
 //
 {
+  engEngine game(6,7);
+  game.place(1,0);
+  game.place(1,0);
+  game.place(1,0);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(0, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 0,
+    "Test if the computer stops a vertical win."
+  );
 }
 
 //=============================================================================
@@ -109,6 +188,23 @@ void utest_engAI::stops_diagonal_left_high_win()
 //D tests a diagonal win with the left side high
 //
 {
+  engEngine game(6,7);
+  game.place(1,3);
+  game.place(2,2);
+  game.place(1,2);
+  game.place(2,1);
+  game.place(2,1);
+  game.place(1,1);
+  game.place(1,0);
+  game.place(2,0);
+  game.place(2,0);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(2, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 0,
+    "Test if the computer stops a left high diagonal win."
+  );
 }
 
 //=============================================================================
@@ -117,6 +213,23 @@ void utest_engAI::stops_diagonal_right_high_win()
 //D tests a diagonal win with the right side high
 //
 {
+  engEngine game(6,7);
+  game.place(1,0);
+  game.place(2,1);
+  game.place(1,1);
+  game.place(2,2);
+  game.place(2,2);
+  game.place(1,2);
+  game.place(2,3);
+  game.place(2,3);
+  game.place(2,3);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(2, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 3,
+    "Test if the computer stops a right high diagonal win."
+  );
 }
 
 //=============================================================================
@@ -125,6 +238,20 @@ void utest_engAI::wins_not_spoils()
 //D tests that the computer wins rather than stopping the player winning
 //
 {
+  engEngine game(6,7);
+  game.place(1,0);
+  game.place(1,1);
+  game.place(1,2);
+  game.place(2,4);
+  game.place(2,4);
+  game.place(2,4);
+
+  // at the moment difficulty does not matter, set to 0
+  engAI opponent(1, 0);
+  utest(
+    opponent.naive_algorithm(game.board()) == 0,
+    "Test if the computer goes for a win rather than stoping the other player."
+  );
 }
 
 //=============================================================================

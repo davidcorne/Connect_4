@@ -22,7 +22,7 @@ using std::vector;
 class engAI {
 public:
 
-  engAI(const int difficulty);
+  engAI(const int player, const int difficulty);
   // Default constructor.
 
   ~engAI();
@@ -50,6 +50,7 @@ private:
 
   // variables
   int m_difficulty;
+  int m_player;
   
 };
 
