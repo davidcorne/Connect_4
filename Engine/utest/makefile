@@ -12,7 +12,7 @@ CC = g++
 #------------------------------------------------------------------------------
 
 exe/utest_engEngine.exe: source/utest_engEngine.cpp ../lib/* 
-	@mkdir exe
+	@mkdir -p exe
 	$(CC) $(CFLAGS_D) source/utest_engEngine.cpp ../lib/Engine.lib \
         -o exe/utest_engEngine.exe 
 

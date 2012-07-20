@@ -41,7 +41,7 @@ CC = g++
 #
 #------------------------------------------------------------------------------
 exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIB).lib 
-	@mkdir exe
+	@mkdir -p exe
 	$(CC) $(CFLAGS_D) source/application/$(EXE).cpp lib/$(LIB).lib \
         -o exe/$(EXE).exe
 	@echo ""
@@ -50,7 +50,7 @@ exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIB).lib
 #D Build the objects into a library
 #------------------------------------------------------------------------------
 lib/$(LIB).lib: $(OBJECTS) 
-	@mkdir lib
+	@mkdir -p lib
 	@echo ""
 	ar ruvs $(LIB).lib $(OBJECTS)
 	@mv $(LIB).lib lib
@@ -60,7 +60,7 @@ lib/$(LIB).lib: $(OBJECTS)
 #D Make all the object files and move them to the obj directory
 #------------------------------------------------------------------------------
 obj/%.o : source/*/%.cpp $(LIB)/%.h 
-	@mkdir obj
+	@mkdir -p obj
 	$(CC) $(CFLAGS_D) -c $<
 	@mv *.o obj
 
