@@ -1,0 +1,3 @@
+[submodule "dgcUtils"]
+	path = dgcUtils
+	url = https://github.com/davidcorne/dgcUtils.git
