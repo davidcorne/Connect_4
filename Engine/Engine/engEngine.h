@@ -31,6 +31,9 @@ public:
   ~engEngine();
   // Destructor.
 
+  const int columns() const;
+  // returns m_columns
+
   void print() const;
   // prints the board to std output in ascii characters.
 

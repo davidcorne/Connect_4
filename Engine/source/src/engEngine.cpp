@@ -60,6 +60,7 @@ void engEngine::print() const
 //D prints the board to std output in ascii characters.
 //
 {
+  cout << endl;
   cout << "  ";
   for (int i = 0; i < m_columns; ++i) {
     cout << " " << i + 1 << "  ";
@@ -92,7 +93,7 @@ void engEngine::place(int player, int column)
   assert(column >= 0 && column > m_columns, "Non-existant column place.");
   assert(!full(column), "Placing in a full column.");
   // return so it compiles
-  print();
+  // print();
   for (int i = 0; i < m_rows; ++i) {
     if (m_board[column][i] != 0) {
       m_board[column][i - 1] = player;
@@ -232,4 +233,13 @@ const vector<vector<int> >& engEngine::board() const
 //
 {
   return m_board;
+}
+
+//=============================================================================
+const int engEngine::columns() const
+//
+//D returns the number of columns
+//
+{
+  return m_columns;
 }

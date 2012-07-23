@@ -41,6 +41,21 @@ void print_help(const string& location)
 }
 
 //=============================================================================
+void human_go(engEngine& game, const int player)
+//
+//D 
+//
+{
+  game.print();
+  int go = -1;
+  while (go < 1 || go > game.columns()) {
+    cout << "Player " << player << ": ";
+    cin >> go;
+  }
+  game.place(player, go - 1);
+}
+
+//=============================================================================
 void simulate_game(engEngine& game, const int win_number)
 //
 //D play two computers
@@ -51,14 +66,14 @@ void simulate_game(engEngine& game, const int win_number)
   engAI comp_2(2, 0, win_number);
   while (game.state() == 0) {
     int move = comp_1.move(game.board());
-    cout << move << endl;
     game.place(1, move);
+    game.print();
     if (game.state() != 0) {
       break;
     }
     move = comp_2.move(game.board());
-    cout << move << endl;
     game.place(2, move);
+    game.print();
   }
   game.print();
   if (game.state() == -1) {
@@ -66,7 +81,6 @@ void simulate_game(engEngine& game, const int win_number)
   } else {
     cout << "Computer " << game.state() << " has won." << endl;
   }
-
 }
 
 //=============================================================================
@@ -75,7 +89,21 @@ void play_one_player(engEngine& game, const int win_number)
 //D play against the computer
 //
 {
-
+  engAI computer(1, 0, win_number);
+  while (game.state() == 0) {
+    human_go(game, 1);
+    if (game.state() != 0) {
+      break;
+    }
+    int move = computer.move(game.board());
+    game.place(2, move);
+  }
+  game.print();
+  if (game.state() == -1) {
+    cout << "It was a draw." << endl;
+  } else {
+    cout << "Player " << game.state() << " has won." << endl;
+  }
 }
 
 //=============================================================================
@@ -84,7 +112,19 @@ void play_two_player(engEngine& game, const int win_number)
 //D play against another person
 //
 {
-
+  while (game.state() == 0) {
+    human_go(game, 1);
+    if (game.state() != 0) {
+      break;
+    }
+    human_go(game, 2);
+  }
+  game.print();
+  if (game.state() == -1) {
+    cout << "It was a draw." << endl;
+  } else {
+    cout << "Player " << game.state() << " has won." << endl;
+  }
 }
 
 //=============================================================================

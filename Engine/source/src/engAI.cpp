@@ -79,8 +79,13 @@ const int engAI::naive_algorithm(const vector<vector<int> >& board)
 
   srand (time(NULL)); //initialize the random seed
   int random_index = rand() % possible.size();
-  random_index++;
-  return -1;
+#include <iostream>
+  using namespace std;
+  cout << "Random choice " << possible[random_index] << " from: ";
+  for (uint i = 0; i < possible.size(); ++i) {
+    cout << possible[i] << " ";
+  }
+  return possible[random_index];
 }
 
 //=============================================================================
