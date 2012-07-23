@@ -6,7 +6,7 @@ LIBS = ../lib/Engine.lib
 
 #------------------------------------------------------------------------------
 # Generic options 
-CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS $(INCLUDES)
+CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS -Wall -Werror $(INCLUDES) 
 CC = g++
 
 #==============================================================================

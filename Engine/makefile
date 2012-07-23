@@ -27,7 +27,7 @@ INCLUDES = -I. -I../dgcUtils
 
 #------------------------------------------------------------------------------
 # Generic options 
-CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS $(INCLUDES)
+CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS $(INCLUDES) -Wall -Werror
 CFLAGS = -O2
 CC = g++
 
