@@ -32,6 +32,18 @@ engEngine::engEngine(int rows, int columns)
 }
 
 //=============================================================================
+engEngine::engEngine(const vector<vector<int> >& board, const int win_number)
+//
+//D Default constructor
+//
+  : m_board(board),
+    m_rows(board[0].size()),
+    m_columns(board.size()),
+    m_win_number(win_number)
+{
+}
+
+//=============================================================================
 engEngine::~engEngine()
 //
 //D Destructor

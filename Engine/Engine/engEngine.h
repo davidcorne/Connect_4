@@ -25,6 +25,9 @@ public:
   engEngine(int rows, int columns);
   // Default constructor.
 
+  engEngine(const vector<vector<int> >& board, const int win_number);
+  // constructor given a filled out board
+  
   ~engEngine();
   // Destructor.
 
@@ -50,15 +53,15 @@ public:
   const vector<vector<int> >& board() const;
   // returns the board.
   
-  bool full(int column) const;
-  // returns if the column is full
-  
 private:
 
   // friends
   friend class utest_engEngine;
   // functions
 
+  bool full(int column) const;
+  // returns if the column is full
+  
   engEngine();
   // Prohibited default constructor
   

@@ -22,7 +22,7 @@ using std::vector;
 class engAI {
 public:
 
-  engAI(const int player, const int difficulty);
+  engAI(const int player, const int difficulty, const int win_number);
   // Default constructor.
 
   ~engAI();
@@ -37,6 +37,9 @@ private:
   friend class utest_engAI;
   // functions
 
+  const vector<int> possible_moves(const vector<vector<int> >& board) const;
+
+
   const int naive_algorithm(const vector<vector<int> >& board);
   // if the computer can win it will return there, then if it can stop the
   // other player it will go there, after that it picks a non-full column
@@ -49,8 +52,9 @@ private:
   // Prohibited assignment operator.
 
   // variables
-  int m_difficulty;
   int m_player;
+  int m_difficulty;
+  int m_win_number;
   
 };
 

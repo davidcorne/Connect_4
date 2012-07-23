@@ -69,7 +69,7 @@ void utest_engAI::takes_horizontal_win()
   game.place(1,2);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(1, 0);
+  engAI opponent(1, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 3,
     "Test if the computer takes a horizontal win."
@@ -89,7 +89,7 @@ void utest_engAI::takes_vertical_win()
   game.place(1,0);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(1, 0);
+  engAI opponent(1, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 0,
     "Test if the computer takes a vertical win."
@@ -115,7 +115,7 @@ void utest_engAI::takes_diagonal_left_high_win()
   game.place(2,0);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(1, 0);
+  engAI opponent(1, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 0,
     "Test if the computer takes a left high diagonal win."
@@ -141,7 +141,7 @@ void utest_engAI::takes_diagonal_right_high_win()
   game.place(2,3);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(1, 0);
+  engAI opponent(1, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 3,
     "Test if the computer takes a right high diagonal win."
@@ -161,7 +161,7 @@ void utest_engAI::stops_horizontal_win()
   game.place(1,2);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(0, 0);
+  engAI opponent(2, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 3,
     "Test if the computer stops a horizontal win."
@@ -181,7 +181,7 @@ void utest_engAI::stops_vertical_win()
   game.place(1,0);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(0, 0);
+  engAI opponent(2, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 0,
     "Test if the computer stops a vertical win."
@@ -207,7 +207,7 @@ void utest_engAI::stops_diagonal_left_high_win()
   game.place(2,0);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(2, 0);
+  engAI opponent(2, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 0,
     "Test if the computer stops a left high diagonal win."
@@ -233,7 +233,7 @@ void utest_engAI::stops_diagonal_right_high_win()
   game.place(2,3);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(2, 0);
+  engAI opponent(2, 0, 4);
   utest(
     opponent.naive_algorithm(game.board()) == 3,
     "Test if the computer stops a right high diagonal win."
@@ -256,9 +256,9 @@ void utest_engAI::wins_not_spoils()
   game.place(2,4);
 
   // at the moment difficulty does not matter, set to 0
-  engAI opponent(1, 0);
+  engAI opponent(1, 0, 4);
   utest(
-    opponent.naive_algorithm(game.board()) == 0,
+    opponent.naive_algorithm(game.board()) == 3,
     "Test if the computer goes for a win rather than stoping the other player."
   );
 }
