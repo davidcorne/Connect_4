@@ -18,7 +18,7 @@
 
 #------------------------------------------------------------------------------
 # Options to edit with specific project names
-EXE = Connect_4
+EXE = engConnect_4
 LIB = Engine
 # OBJECTS must be in dependency order right depending on left, and preceded by
 # obj/ eg obj/utility.o obj/file.o
@@ -68,7 +68,7 @@ obj/%.o : source/*/%.cpp $(LIB)/%.h
 #D For deleting all temporary and made files
 #------------------------------------------------------------------------------
 clean: FRC
-	@rm -f obj/* lib/* exe/* *.stackdump *~ \#*\#
+	@rm -f obj/* lib/* exe/*.exe *.stackdump *~ \#*\#
 	@echo "Removed all: objects, libraries, executables, and temp files."
 
 #==============================================================================

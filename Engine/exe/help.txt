@@ -1,0 +1,8 @@
+Usage: engConnect_4.exe <options>
+
+This plays a game of connect 4 in the terminal.
+
+Options:
+
+-c, -configure     Configures the game, sets board size and win number.
+-h, -help, --help  Display this message.

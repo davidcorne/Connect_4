@@ -28,6 +28,9 @@ engEngine::engEngine(int rows, int columns)
     m_columns(columns),
     m_win_number(4) // default to connect 4
 {
+  assert(m_rows > 0, "Non-positive number of rows.");
+  assert(m_columns > 0, "Non-positive number of columns.");
+  assert(m_win_number > 0, "Non-positive number to get in a row for a win.");
   m_board.resize(m_columns, vector<int>(m_rows, 0));
 }
 
@@ -86,16 +89,16 @@ void engEngine::place(int player, int column)
 //D Precondition: !full(column)
 //
 {
-  assert(column > m_columns, "Non-existant column place.");
+  assert(column >= 0 && column > m_columns, "Non-existant column place.");
   assert(!full(column), "Placing in a full column.");
   // return so it compiles
+  print();
   for (int i = 0; i < m_rows; ++i) {
     if (m_board[column][i] != 0) {
       m_board[column][i - 1] = player;
       return;
     }
   }
-  // 
   m_board[column][m_rows - 1] = player;
 }
 
