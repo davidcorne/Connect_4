@@ -50,8 +50,6 @@ const int engAI::naive_algorithm(const vector<vector<int> >& board)
 //D player it will go there, after that it picks a non-full column randomly
 //
 {
-#include <iostream>
-  
   const vector<int> possible(possible_moves(board));
   int opponent = -1;
   if (m_player == 1) {
