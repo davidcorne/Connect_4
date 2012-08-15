@@ -38,9 +38,15 @@ private:
   // functions
 
   const vector<int> possible_moves(const vector<vector<int> >& board) const;
+  // return a vector of the possible moves given the board
 
-
-  const int naive_algorithm(const vector<vector<int> >& board);
+  const int min_max_algorithm(
+    const vector<vector<int> >& board,
+    const int depth
+  ) const;
+  // an implementation of a min max algorithm
+  
+  const int naive_algorithm(const vector<vector<int> >& board) const;
   // if the computer can win it will return there, then if it can stop the
   // other player it will go there, after that it picks a non-full column
   // randomly.

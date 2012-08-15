@@ -1,7 +1,8 @@
 //=============================================================================
-//D <One line description>
+//D AI for a connect four game
 //
-// <Full description.>
+// This currently implements a very naive algorithm, which wins if it can, then
+// tries to stop it's opponent winning, otherwise chooses randomly.
 //
 
 #include "Engine/engAI.h"
@@ -23,6 +24,9 @@ engAI::engAI(const int player, const int difficulty, const int win_number)
     m_difficulty(difficulty),
     m_win_number(win_number)
 {
+  assert((m_player == 1 || player == 2), "Player number should be 1 or 2.");
+  assert((m_difficulty >= 0), "difficulty should be non-negative.");
+  assert((m_win_number >= 0), "win number shoule be non-negative.");
 }
 
 //=============================================================================
@@ -39,12 +43,31 @@ const int engAI::move(const vector<vector<int> >& board)
 //D returns which column the AI will use.
 //
 {
-  // just use a naive algorithm for now
-  return naive_algorithm(board);
+  // if difficulty is 0 use the naive algorithm else use min-max with the
+  // difficulty as the depth
+  int move = -1;
+  if (m_difficulty == 0) {
+    move = naive_algorithm(board);
+  } else {
+    move = min_max_algorithm(board, m_difficulty) ;
+  }
+  return move;
 }
 
 //=============================================================================
-const int engAI::naive_algorithm(const vector<vector<int> >& board)
+const int engAI::min_max_algorithm(
+  const vector<vector<int> >& board,
+  const int depth
+) const
+//
+//
+//
+{
+  return 0;
+}
+
+//=============================================================================
+const int engAI::naive_algorithm(const vector<vector<int> >& board) const
 //
 //D if the computer can win it will return there, then if it can stop the other
 //D player it will go there, after that it picks a non-full column randomly
@@ -53,7 +76,7 @@ const int engAI::naive_algorithm(const vector<vector<int> >& board)
   const vector<int> possible(possible_moves(board));
   int opponent = -1;
   if (m_player == 1) {
-    opponent = 0;
+    opponent = 2;
   } else if (m_player == 2) {
     opponent = 1;
   } else {
@@ -77,14 +100,11 @@ const int engAI::naive_algorithm(const vector<vector<int> >& board)
     }
   }
 
-  srand (time(NULL)); //initialize the random seed
+  // if can't win or prevent a win then choose randomly
+
+  // initialize the random seed
+  srand (time(NULL)); 
   int random_index = rand() % possible.size();
-#include <iostream>
-  using namespace std;
-  cout << "Random choice " << possible[random_index] << " from: ";
-  for (uint i = 0; i < possible.size(); ++i) {
-    cout << possible[i] << " ";
-  }
   return possible[random_index];
 }
 

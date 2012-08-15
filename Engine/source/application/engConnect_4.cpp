@@ -89,7 +89,7 @@ void play_one_player(engEngine& game, const int win_number)
 //D play against the computer
 //
 {
-  engAI computer(1, 0, win_number);
+  engAI computer(2, 0, win_number);
   while (game.state() == 0) {
     human_go(game, 1);
     if (game.state() != 0) {
@@ -146,22 +146,21 @@ int main(int num_arguments, char* arguments[])
         return 0;
 
       } else if (arg == "-c" || arg == "-configure") {
-        // reset these to ridiculous values
-        rows = -1;
-        columns = -1;
-        win_number = -1;
-        while (cin.good() && rows < 0) {
+        do {
           cout << "How many rows?" << endl;
           cin >> rows;
-        }        
-        while (cin.good() && columns < 0) {
+        } while (!cin.good() || rows <= 0);
+
+        do {
           cout << "How many columns?" << endl;
           cin >> columns;
-        }        
-        while (cin.good() && win_number < 0) {
+        }  while (!cin.good() || columns <= 0);
+        
+        do {
           cout << "How many to win?" << endl;
           cin >> win_number;
-        }        
+        }  while (!cin.good() || win_number <= 0);
+        
       } else {
         cerr << "Unknown option" << endl;
         print_help(arguments[0]);
@@ -170,10 +169,10 @@ int main(int num_arguments, char* arguments[])
     }
   }
   int players = -1;
-  while (cin.good() && players != 0 && players != 1 && players != 2) {
+  do {
     cout << "How many players? [0, 1, 2]" << endl;
     cin >> players;
-  }
+  } while (!cin.good() || (players != 0 && players != 1 && players != 2));
   
   engEngine game(rows, columns);
   game.set_win_number(win_number);
